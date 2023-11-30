@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+# include <stdarg.h>
 
 /* retourne la longueur de la string*/
 /*cherche s il y a une % dans le string */
@@ -19,36 +20,47 @@
 
 /*rechercher le format*/
 /* utiliser ici va_arg(args, type)*/
-/*
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-char	*ft_strchr(const char *str, int c)
-{
-	int		i;
 
-	if (c == '\0')
-		return ((char *)&str[ft_strlen(str)]);
+int	ft_putstr(char *s)
+{
+	int	i;
+
+	if (!s)
+		return (0);
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
-		if (str[i] == (char)c)
-			return ((char *)(str + i));
+		write(1, &s[i], 1);
 		i++;
 	}
-	return (0);
+	return (i);
 }
-void	ft_putnbr_fd(int n, int fd)
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+int	ft_putnbr(int n)
 {
 	char			tab[20];
 	int				i;
 	unsigned int	nb;
+	int				len;
 
 	i = 0;
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
+		ft_putchar('-');
 		nb = -n;
 	}
 	else
@@ -59,68 +71,60 @@ void	ft_putnbr_fd(int n, int fd)
 		nb = nb / 10;
 	}
 	tab[i] = nb % 10 + '0';
+	len = i;
 	while (i >= 0)
-		ft_putchar_fd(tab[i--], fd);
-}
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}*/
-
-static void ft_findformat(va_list args, char c)
-{
-	if (c == 'c')
-		ft_putchar_fd((va_arg(args, int)), 1);
-	else if (c == 's')
-		ft_putstr_fd((va_arg(args, char *)), 1);
-	else if (c == 'd')
-		ft_putnbr_fd((va_arg(args, int)), 1);
+		ft_putchar(tab[i--]);
+	return (len);
 }
 
-int	ft_printf(const char *str, ...)
+int	ft_findformat(va_list args, const char type)
+{
+	int len;
+
+	len =  0;
+	if (type == 's')
+		len = ft_putstr((va_arg(args, char *)));
+	else if (type == 'c')
+		len = ft_putchar((va_arg(args, int)));	
+	else if (type == 'd')
+		len = ft_putnbr((va_arg(args, int)));		
+	return (len);
+}
+
+int	ft_printf(const char *format, ...)
 {
 	va_list args;
-	unsigned int	i;
+	int	i;
+	int len;
 
-	va_start(args, str);
 	i = 0;
-	while (str[i] != '\0')
+	len = 0;
+	va_start(args, format);
+	while (format[i] != '\0')
 	{
-		if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i + 1]))
-		{
-			ft_findformat(args, (str[i + 1]));
-			i = i +2;
+		if (format[i] == '%')
+		{	
+			//printf("bf_format[%d + 1] =%c \n\n", i, format[i + 1] );
+			len += ft_findformat(args, format[i + 1]);
+			//printf("af_format[%d + 1] =%s \n\n", i, va_arg(args, char *));
+			i++;
 		}
-		ft_putchar_fd(str[i], 1);
+		else
+			ft_putchar(format[i]);
 		i++;
-	}	
+	}
 	va_end(args);
-	return (i);	
+	return (len);
 }
+
+
 int main(void)
 {
-	char	*str = "bonjour %s toi %c. %d.\n";
-	int i;
-	i = ft_printf(str, "Hello", '!', 5);
-	printf("i=%d\n", i);
-	printf("bonjour %s toi %c. %d. \n", "Hello", '!', 5);
+	//const char	*str = "bonjour %s toi %s. %s.\n";
+	//int i;
+	//printf("bonjour %c toi %s. %c.\n", 'j', "hello", 'g');
+	ft_printf("bonjour %d %s toi.\n", 5, "er");
+	//printf("i=%d\n", i);
+	
 	return (0);	
 }

@@ -10,30 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr(char *s)
 {
-	int	i;
+	//int	i;
 
 	if (!s)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+		return (0) ;	
+	return(	write(1, s, ft_strlen(s)));
 }
 /*
-int	main(void)
+int main(void)
 {
-	char *file = "toto.txt";
-	char s[] = "hello word";
-	int	fd;
-	fd = open(file, O_RDWR);
-	printf("fd=%d",fd);
-	ft_putstr_fd(s, fd);
-	close(fd);
+	int i;
+
+	i = ft_putstr("hello de lu \n");
+	printf("i=%d", i);
 	return (0);
 }*/
+

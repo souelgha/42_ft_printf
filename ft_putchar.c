@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:09:45 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/11/20 12:36:47 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/12 14:21:37 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/12 15:46:18 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_putchar(char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	write(1, &c, 1);
+	return (1);
 }
 /*
-#include<stdio.h>
-#include<string.h>
-
 int main(void)
 {
-    printf("S=%lld \n", ft_strlen("tototototo"));
-    printf("O=%lld \n", strlen("tototototo"));
-    return (0);
-}
-*/
+	ft_putchar('A');
+	return (0);
+}*/

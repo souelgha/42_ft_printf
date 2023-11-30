@@ -16,14 +16,3 @@ void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
-/*
-int	main(void)
-{
-	char *file = "toto.txt";
-	int	fd;
-	fd = open(file, O_RDWR);
-	printf("fd=%d",fd);
-	ft_putchar_fd('2', fd);
-	close(fd);
-	return (0);
-}*/

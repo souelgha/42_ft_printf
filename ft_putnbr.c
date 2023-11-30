@@ -10,40 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr(int n)
 {
 	char			tab[20];
 	int				i;
 	unsigned int	nb;
+	int				len;
+	int				sign;
 
 	i = 0;
+	sign = 0;
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
+		ft_putchar('-');
 		nb = -n;
+		sign = 1;
 	}
 	else
 		nb = n;
-	while (nb > 9)
+	while (nb != 0)
 	{
 		tab[i++] = nb % 10 + '0';
 		nb = nb / 10;
 	}
-	tab[i] = nb % 10 + '0';
+	len = i;
+	i = i- 1;
 	while (i >= 0)
-		ft_putchar_fd(tab[i--], fd);
+		ft_putchar(tab[i--]);
+	return (len + sign);
 }
 /*
 #include <limits.h>
 int	main(void)
 {
-	char *file = "toto.txt";
-	int	fd;
-	int	n = -2147483648;
-	fd = open(file, O_RDWR);
-	ft_putnbr_fd(n, fd);
-	close(fd);
+	int	n = -27483648;
+	int len;
+	
+	len = ft_putnbr(n);
+	printf("\n len=%d", len);
 	return (0);
 }*/
