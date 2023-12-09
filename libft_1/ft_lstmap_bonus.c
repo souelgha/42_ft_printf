@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/26 11:29:04 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/26 14:35:51 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	write(1, &c, 1);
-	return (1);
+	t_list	*newelem;
+	t_list	*tete;
+
+	if (!lst || !f || !del)
+		return (NULL);
+	tete = NULL;
+	while (lst != NULL)
+	{
+		newelem = ft_lstnew(f(lst->content));
+		if (newelem == NULL)
+		{
+			ft_lstclear(&tete, (*del));
+			return (tete);
+		}		
+		ft_lstadd_back(&tete, newelem);
+		lst = lst->next;
+	}
+	return (tete);
 }
-/*
-int main(void)
-{
-	ft_putchar('A');
-	return (0);
-}*/

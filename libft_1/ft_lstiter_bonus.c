@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/25 16:47:08 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/25 16:47:13 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	ft_lstiter(t_list *lst, void (*f)(void*))
 {
-	write(1, &c, 1);
-	return (1);
+	t_list	*tmp;
+
+	if (!lst || !f)
+		return ;
+	tmp = NULL;
+	while (lst != NULL)
+	{
+		tmp = lst->next;
+		(*f)(lst->content);
+		lst = tmp;
+	}
+	lst = NULL;
 }
-/*
-int main(void)
-{
-	ft_putchar('A');
-	return (0);
-}*/

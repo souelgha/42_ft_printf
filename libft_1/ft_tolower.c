@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/06 17:56:05 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/11 12:13:50 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+int	ft_tolower(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
 }
 /*
+#include<stdio.h>
+#include<ctype.h>
+
 int main(void)
 {
-	ft_putchar('A');
-	return (0);
+    printf("S=%d \n", ft_tolower('Y'));
+    printf("O=%d \n", tolower('Y'));
+    return (0);
 }*/

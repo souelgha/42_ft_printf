@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/20 15:41:50 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/26 12:42:38 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	write(1, &c, 1);
-	return (1);
+	unsigned int	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
 /*
+void	iter(unsigned int i, char * s) 
+{
+	*s += i;
+}
 int main(void)
 {
-	ft_putchar('A');
-	return (0);
+	char	*s = "0000000000";
+	ft_striteri(s, iter);
+	printf("s=%s\n", s);
+
 }*/

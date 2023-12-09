@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonouelg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/12 14:21:37 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/12 15:46:18 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	ft_putchar_fd(char c, int fd)
 {
-	write(1, &c, 1);
-	return (1);
+	write(fd, &c, 1);
 }
 /*
-int main(void)
+int	main(void)
 {
-	ft_putchar('A');
+	char *file = "toto.txt";
+	int	fd;
+	fd = open(file, O_RDWR);
+	printf("fd=%d",fd);
+	ft_putchar_fd('2', fd);
+	close(fd);
 	return (0);
 }*/

@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/12 16:27:30 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/25 11:19:44 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	write(1, &c, 1);
-	return (1);
+	int	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
+	ft_putchar_fd('\n', fd);
 }
 /*
-int main(void)
+int	main(void)
 {
-	ft_putchar('A');
+	char *file = "toto.txt";
+	char s[] = "hello world";
+	int	fd;
+	fd = open(file, O_RDWR);
+	ft_putendl_fd(s, fd);
+	ft_putstr_fd("MIAOU", fd);
+	close(fd);
 	return (0);
 }*/

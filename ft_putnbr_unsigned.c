@@ -1,52 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:33:21 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/02 12:34:29 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/12/01 17:03:59 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/12/02 11:54:15 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_findsign(int n)
-{
-	int	sign;
-
-	sign = 0;
-	if (n < 0)
-		sign = 1;
-	else
-		sign = 0;
-	return (sign);
-}
-
-int	ft_putnbr(int n)
+int	ft_putnbr_unsigned(unsigned int nb)
 {
 	char			tab[20];
 	int				i;
-	unsigned int	nb;
 	int				len;
 
 	i = 0;
-	len = ft_findsign(n);
-	nb = n;
-	if (n == 0)
-		return (write(1, "0", 1));
-	if (n < 0)
+	if (nb == 0)
 	{
-		ft_putchar('-');
-		nb = -n;
+		write(1, "0", 1);
+		return (1);
 	}
 	while (nb != 0)
 	{
 		tab[i++] = nb % 10 + '0';
 		nb = nb / 10;
 	}
-	len += i;
+	len = i;
 	i = i - 1;
 	while (i >= 0)
 		ft_putchar(tab[i--]);
@@ -56,10 +39,10 @@ int	ft_putnbr(int n)
 #include <limits.h>
 int	main(void)
 {
-	int	n = 27647;
+	unsigned int	n = 0;
 	int len;
 	
-	len = ft_putnbr(n);
-	printf("\n len=%d", len);
+	len = ft_putnbr_unsigned(n);
+	printf("\n len=%u", len);
 	return (0);
 }*/

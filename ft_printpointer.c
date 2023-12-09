@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_hexa.c                                   :+:      :+:    :+:   */
+/*   ft_printpointer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:14 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 16:28:36 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/12/01 14:33:42 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/12/02 13:55:55 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*ft_base(char c)
+int	ft_printpointer(void *p)
 {
-	char	*base_upper;
-	char	*base_lower;
+	unsigned long int	n;
+	char				*base;
+	char				tab[100];
+	int					len;
+	int					i;
 
-	base_lower = "0123456789abcdef";
-	base_upper = "0123456789ABCDEF";
-	if (c == 'x')
-		return (base_lower);
-	else
-		return (base_upper);
-}
-
-int	ft_putnbr_hexa(unsigned long int n, char c)
-{
-	char	*base;
-	char	tab[100];
-	int		i;
-	int		len;
-
-	base = ft_base(c);
+	base = "0123456789abcdef";
+	n = (unsigned long int)p;
+	if (p == 0)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	write(1, "0x", 2);
 	i = 0;
-	if (n == 0)
-		return (write(1, "0", 1));
 	while (n > 0)
 	{
 		tab[i++] = base[n % 16];
@@ -44,15 +37,5 @@ int	ft_putnbr_hexa(unsigned long int n, char c)
 	len = i;
 	while (--i >= 0)
 		ft_putchar(tab[i]);
-	return (len);
+	return (len + 2);
 }
-/*
-#include <limits.h>
-int	main(void)
-{
-	unsigned long int	n = 0;
-	int len;
-	len = ft_putnbr_hexa(n, 'X');
-	printf("\nlen=%d", len);
-	return (0);
-}*/

@@ -1,9 +1,9 @@
 
 NAME = libftprintf.a
-HEAD = libftprintf.h
+HEAD = ft_printf.h
 
 #COMPIL
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_PATH)
 
 #PARAM
@@ -11,20 +11,20 @@ AR = ar rc
 RM = rm -f
 
 # LIBFT
-LIBFT_PATH = libft
+LIBFT_PATH = libft_1
 LIBFT_MAKE = libft_Makefile
 LIBFT = $(LIBFT_PATH)/libft.a
 
 #SOURCES
 SRCS = \
 		ft_printf.c\
-		ft_strlen.c \
-		ft_strchr.c \
-		ft_putchar_fd.c\
-		ft_putstr_fd.c\
-		ft_putnbr_fd.c\
-		ft_putnbr_hexa.C
-	
+		ft_putchar.c\
+		ft_putstr.c\
+		ft_putnbr.c\
+		ft_putnbr_hexa.c\
+		ft_findformat.c\
+		ft_printpointer.c\
+		ft_putnbr_unsigned.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -33,19 +33,18 @@ OBJS = $(SRCS:.c=.o)
 
 
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(AR) $(NAME) $(OBJ)
+$(NAME): $(OBJS) $(LIBFT)
+	$(AR) $(NAME) $(OBJS)
 
 
 $(LIBFT):
 	make -C $(LIBFT_PATH) -f $(LIBFT_MAKE)
-	make -C $(LIBFT_PATH) -f $(LIBFT_MAKE) bonus
 	mv $(LIBFT) $(NAME)
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ) 
+	$(RM) $(OBJS) 
 	make -C $(LIBFT_PATH) -f $(LIBFT_MAKE) clean
 
 fclean: clean

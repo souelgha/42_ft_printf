@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/06 16:45:28 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/11 12:12:27 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+int	ft_isascii(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	return (c >= 0 && c <= 127);
 }
 /*
+#include<stdio.h>
+#include<ctype.h>
+
 int main(void)
 {
-	ft_putchar('A');
-	return (0);
-}*/
+    printf("S=%d \n", ft_isascii(-250));
+    printf("O=%d \n", isascii(-250));
+    return (0);
+}
+*/

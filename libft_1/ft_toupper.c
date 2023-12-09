@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/06 17:45:36 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/11 12:14:06 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+int	ft_toupper(int c)
 {
-	write(1, &c, 1);
-	return (1);
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
 }
 /*
+#include<stdio.h>
+#include<ctype.h>
+
 int main(void)
 {
-	ft_putchar('A');
-	return (0);
+    printf("S=%d \n", ft_toupper(104));
+    printf("O=%d \n", toupper(104));
+    return (0);
 }*/

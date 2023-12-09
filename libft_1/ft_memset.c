@@ -1,25 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:32:28 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/01 11:32:54 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/07 11:33:12 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/11 12:13:22 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	write(1, &c, 1);
-	return (1);
+	unsigned char	*m ;
+
+	m = str;
+	while (n > 0)
+	{
+		m[n - 1] = c;
+		n--;
+	}
+	str = (void *)m;
+	return (str);
 }
 /*
+#include<stdio.h>
 int main(void)
 {
-	ft_putchar('A');
-	return (0);
+     int i;
+	char tab1[100];
+	memset(tab1, 'B', 100);
+	
+	i = 0;
+	//tab1[0] = 0;
+    ft_memset(tab1, 'A', 42);
+	while( i < 100 )
+	{
+	//printf("i =%d \n", i);		
+    printf("%c", tab1[i]);
+	++i;
+	}	
+    return (0);
 }*/

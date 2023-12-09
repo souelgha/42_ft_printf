@@ -1,65 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sonouelg <sonouelg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sonouelg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 11:33:21 by sonouelg          #+#    #+#             */
-/*   Updated: 2023/12/02 12:34:29 by sonouelg         ###   ########.fr       */
+/*   Created: 2023/11/12 17:11:50 by sonouelg          #+#    #+#             */
+/*   Updated: 2023/11/12 18:20:21 by sonouelg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static int	ft_findsign(int n)
-{
-	int	sign;
-
-	sign = 0;
-	if (n < 0)
-		sign = 1;
-	else
-		sign = 0;
-	return (sign);
-}
-
-int	ft_putnbr(int n)
+void	ft_putnbr_fd(int n, int fd)
 {
 	char			tab[20];
 	int				i;
 	unsigned int	nb;
-	int				len;
 
 	i = 0;
-	len = ft_findsign(n);
-	nb = n;
-	if (n == 0)
-		return (write(1, "0", 1));
 	if (n < 0)
 	{
-		ft_putchar('-');
+		ft_putchar_fd('-', fd);
 		nb = -n;
 	}
-	while (nb != 0)
+	else
+		nb = n;
+	while (nb > 9)
 	{
 		tab[i++] = nb % 10 + '0';
 		nb = nb / 10;
 	}
-	len += i;
-	i = i - 1;
+	tab[i] = nb % 10 + '0';
 	while (i >= 0)
-		ft_putchar(tab[i--]);
-	return (len);
+		ft_putchar_fd(tab[i--], fd);
 }
 /*
 #include <limits.h>
 int	main(void)
 {
-	int	n = 27647;
-	int len;
-	
-	len = ft_putnbr(n);
-	printf("\n len=%d", len);
+	char *file = "toto.txt";
+	int	fd;
+	int	n = -2147483648;
+	fd = open(file, O_RDWR);
+	ft_putnbr_fd(n, fd);
+	close(fd);
 	return (0);
 }*/
