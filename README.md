@@ -3,3 +3,4 @@
 We discover variadic functions in C. The key to a successful ft_printf is well-structured and extensible code.
 
 We handle the following conversions: cspdiuxX%
+this function is reused for most of  C projects in 42cursus.
